@@ -35,7 +35,7 @@ ldrb r1,[r5,0x13]
 BXwithR11 0x800A348|1
 mov r0,2
 mov r1,0xA
-BXwithR11 0x8022978|1
+BXwithR11 0x8029978|1
 mov r0,0xA
 strh r0,[r5,0x20]
 mov r0,0x4

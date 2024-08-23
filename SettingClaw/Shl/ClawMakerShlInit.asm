@@ -34,7 +34,7 @@ b @@Finished
 @@SettingData:
 mov r1,0x28
 mov r2,0x29
-mov r3,0x1
+mov r3,0
 BXwithR11 0x80133FC|1
 
 BXwithR11 0x8013818|1 

@@ -1,4 +1,4 @@
-LoopNumber equ 3
+LoopNumber equ 6
 .align 2
 BASSCLAWATTACK:
 push r14
@@ -46,12 +46,15 @@ strb r0,[r5,r1]
 b @@FINISH
 
 @@End:
-mov r0, 0x6
-strb r0,[r5,0x9]
-mov r0,0
-strh r0,[r5,0xA]
-mov r0,0x4
-strb r0,[r5,0xB]
+;mov r0, 0x6
+;strb r0,[r5,0x9]
+;mov r0,0
+;strh r0,[r5,0xA]
+;mov r0,0x4
+;strb r0,[r5,0xB]
+
+BXwithR11 0x800D5bC|1
+
 
 @@FINISH:
 pop r15

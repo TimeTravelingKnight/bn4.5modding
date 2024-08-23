@@ -4,7 +4,7 @@ Claw equ 0x77
 SetClaw: 
 
 push r14
-mov r6,0xFF
+mov r6,20
 bl SetShlClaw
 pop r15
 

@@ -30,9 +30,9 @@ ldmia [r0]!,r1-r3
 mov r4,0x9
 ;EfC01
 @@Somewhere3:
-ldrb r0,[r5,0x12]
-ldrb r1,[r5,0x13]
-BXwithR11 0x800A348|1
+;ldrb r0,[r5,0x12]       Shaking
+;ldrb r1,[r5,0x13]
+;BXwithR11 0x800A348|1
 mov r0,2
 mov r1,0xA
 BXwithR11 0x8029978|1

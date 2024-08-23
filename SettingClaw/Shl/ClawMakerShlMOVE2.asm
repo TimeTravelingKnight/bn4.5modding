@@ -14,5 +14,7 @@ ClawPool:
 
 Destory:
 push r14
-BXwithR11 0x8002DAC|1
+BXwithR11 0x8010F20|1
+
+;BXwithR11 0x8002DAC|1
 pop r15

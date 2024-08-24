@@ -16,6 +16,7 @@ ClawSprite:
 BassSprite:
 .incbin "bins/Bass.DMP"
 
+.include "Sound/addingswosh.asm"
 
 .orga 0x8124E8
 .dw BASSCLAWATTACK|1

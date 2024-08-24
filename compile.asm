@@ -23,7 +23,7 @@ BassCape:
 .include "Sound/addingswosh.asm"
 
 .orga 0x8124E8
-.dw BASSCLAWATTACK|1
+.dw BassMainClaw|1;.dw BASSCLAWATTACK|1
 
 .orga 0x34F4+0x1DC
 .dw ClawMOVE2|1
@@ -40,5 +40,8 @@ BassCape:
 
 .orga 0x2B704
 .dw BassCape
+
+.orga 0x3400
+.dw BASSEFCCLAW|1
 
 .close

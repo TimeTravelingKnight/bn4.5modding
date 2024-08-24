@@ -30,7 +30,10 @@ BASSCLAWATTACK:
 push r14
 ldrb r0,[r5,0xB]
 cmp r0,0x10
-beq @@BRANCH1
+bge @@BRANCH1
+
+
+
 ldr r0,[r5,0x3C]
 ldr r1,=0x140000
 
@@ -66,12 +69,28 @@ add r1,1
 strb r0,[r5,r1]
 mov r0,24 ;Animation
 strb r0,[r5,0x10]
+
+
 mov r0,0x4
 strb r0,[r5,0xB]
+mov r0,0
+mov r1,0xA0
+strb r0,[r7,r1]
+
+
 b @@FINISH
 @@BRANCH1:
 
 ldrb r2,[r5,0xB] ;phase of animation
+
+cmp r2,0x1C
+beq @@UpdateAnimationandClose
+
+cmp r2,0x18
+beq @@TelportBass
+
+cmp r2,0x14
+beq @@BeginPuttingBassDown
 cmp r2,0x10
 beq @@PuttingBassDown
 
@@ -145,6 +164,9 @@ mov r1,0x20
 strb r0,[r5,r1]
 b @@FINISH
 
+
+
+
 @@End:
 ;mov r0, 0x6
 ;strb r0,[r5,0x9]
@@ -153,8 +175,6 @@ b @@FINISH
 ;mov r0,0x4
 ;strb r0,[r5,0xB]
 
-mov r0,0
-strb r0,[r5,0x10]
 
 
 ldrb r0,[r5,0xB]
@@ -162,16 +182,67 @@ add r0,4
 strb r0,[r5,0xB]
 b @@FINISH
 
+
+
+
 @@PuttingBassDown:
+mov r1,0xA0
+ldrb r0,[r7,r1]
+cmp r0,(LoopNumber+1)*2
+bne @@FINISH
+
+@@UpdateSpriteToTeleport:
+mov r0,3
+mov r1,0x20
+strb r0,[r5,r1]
+ldrb r0,[r5,0xB]
+add r0,4
+strb r0,[r5,0xB]
+b @@FINISH
+
+
+@@BeginPuttingBassDown:
 bl PutMeDown
 bne @@FINISH
 
+
+
+
+mov r0,0
+strb r0,[r5,0x10]
+ldrb r0,[r5,0xB]
+add r0,4
+strb r0,[r5,0xB]
+b @@FINISH
+
+@@TelportBass:
+mov r0,3
+strb r0,[r5,0x10]
+ldrb r0,[r5,0xB]
+add r0,4
+strb r0,[r5,0xB]
+
+mov r0,4
+mov r1,0x20
+strb r0,[r5,r1]
+b @@FINISH
+
+@@UpdateAnimationandClose:
+mov r1,0x20
+ldrb r2,[r5,r1]
+tst r2,r2
+beq @@CloseBass
+sub r2,0x1
+strb r2,[r5,r1] 
+b @@FINISH
 
 @@CloseBass:
 BXwithR11 0x800D5bC|1
 
 
 @@FINISH:
+
+
 pop r15
 .pool
 
@@ -188,11 +259,15 @@ strb r2,[r5,r1]
 b @@Testing
 
 @@CounterisZero:
-mov r2,1
-strb r2,[r5,r1]
+;mov r2,1
+;strb r2,[r5,r1]
 
-ldr r1,=0x10000
-sub r0,r0,r1
+mov r0,0
+;ldr r1,=0x10000
+;sub r0,r0,r1
+;mov r0,3
+;strb r0,[r5,0x10]
+
 str r0,[r5,0x3C]
 @@Testing:
 tst r0,r0

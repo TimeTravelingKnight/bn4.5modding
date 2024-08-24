@@ -53,6 +53,16 @@ ldrh r0,[r5,0x20]
 sub r0,0x1
 strh r0,[r5,0x20]
 bgt @@Escaping2
+
+ldr r0,[r5,0x4C]
+ldr r0,[r0,0x58]
+
+mov r2,0xA0
+ldrb r1,[r0,r2]
+add r1,1
+strb r1,[r0,r2]
+
+
 mov r0,0xA
 strh r0,[r5,0x20]
 mov r0,0x47

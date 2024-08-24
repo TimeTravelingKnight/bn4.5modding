@@ -16,6 +16,10 @@ ClawSprite:
 BassSprite:
 .incbin "bins/Bass.DMP"
 
+.align 4
+BassCape:
+.incbin "bins/bassnewcape.DMP"
+
 .include "Sound/addingswosh.asm"
 
 .orga 0x8124E8
@@ -34,5 +38,7 @@ BassSprite:
 .orga 0x2B478
 .dw BassSprite
 
+.orga 0x2B704
+.dw BassCape
 
 .close

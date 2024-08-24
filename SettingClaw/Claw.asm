@@ -17,14 +17,54 @@ mov r0,0x4
 strb r0,[r5,0xB]
 b @@FINISH
 @@BRANCH1:
+
+ldrb r2,[r5,0xB] ;phase of animation
+cmp r2,0xC
+beq @@NoAnimationupdate
+
+cmp r2,0x4
+beq @@CheckToUpdate
+
+mov r1,0x20
+ldrb r0,[r5,r1]
+cmp r0,1
+beq @@UpdateToPhaseC
+b @@UpdateCounter
+@@UpdateToPhaseC:
+add r2,4
+strb r2,[r5,0xB]
+mov r0,26
+strb r0,[r5,0x10]
+b @@UpdateCounter
+
+
+
+@@CheckToUpdate:
+mov r1,0x20
+ldrb r0,[r5,r1]
+cmp r0,10
+beq @@UpdateToPhase8
+b @@UpdateCounter
+
+@@UpdateToPhase8:
+add r2,4
+strb r2,[r5,0xB]
+mov r0,25
+strb r0,[r5,0x10]
+b @@UpdateCounter
+
+@@NoAnimationUpdate:
 mov r1,0x20
 ldrb r0,[r5,r1]
 tst r0,r0
 beq @@generate
-ldrh r0,[r5,0x20]
+
+@@UpdateCounter:
+ldrb r0,[r5,r1]
 sub r0,0x1
-strh r0,[r5,0x20] 
+strb r0,[r5,r1] 
 b @@FINISH
+
 @@generate:
 bl shootingclawpostions
 push r2,r3

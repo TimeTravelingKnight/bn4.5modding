@@ -15,5 +15,9 @@ mov r3,0
 mov r2,0
 mov r4,0
 BXwithR11 SummonLaser|1
+ldrb r1,[r0]
+mov r2,0x10
+eor r1,r2
+strb r1,[r0]
 pop r15
 .pool

@@ -30,7 +30,7 @@ bl SetHand
 pop r15
 WaitToSetHead:
 push r14
-mov r0,2
+mov r0,0
 mov r1,0xA
 BXwithR11 0x8029978|1
 ldrh r0,[r5,0x20]
@@ -75,6 +75,11 @@ ldrh r0,[r5,0x20]
 sub r0,1
 strh r0,[r5,0x20]
 bne @@Finish
+
+mov r0,2
+mov r1,0x45
+BXwithR11 0x8029978|1
+
 mov r0,29
 strb r0,[r5,0x10]
 bl FireLaser

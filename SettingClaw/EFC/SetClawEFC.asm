@@ -1,7 +1,7 @@
 BASSefcControl:
 push r14
 push r0-r2,r5
-mov r0,0x56
+mov r0,0x6B
 BXwithR11 0x08002C90|1
 mov r0,r5
 pop r1-r3,r5

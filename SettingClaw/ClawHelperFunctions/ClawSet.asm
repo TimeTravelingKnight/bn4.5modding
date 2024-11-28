@@ -1,5 +1,6 @@
 setShl equ 0x8002CC8|1
-Claw equ 0x77
+
+Claw equ 0xB7
 .align 2
 SetClaw: 
 

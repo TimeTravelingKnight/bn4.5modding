@@ -16,13 +16,31 @@ size equ filesize("rockmanreal.gba")
 .include "SettingLasers/LaserDmg.asm"
 .endarea
 
+
+.align 4
+
+.include "Sound/addingswosh.asm"
+
 .orga size
 .include "SettingClaw/Claw.asm"
 .include "SettingLasers/LaserMaster.asm"
 
+
+
+.align 4
+Songs:
+.incbin "Sound/soundList.bin" 
+.dw swooshSongHeader
+.db 0x19,0,0x19,0
+.dw RoarSongHeader
+.db 0x1C,0,0x1C,0  
+.dw chargeSongHeader
+.db 0x03,0,0x03,0
+
 .align 4 
 CannonNew:
 .incbin "bins/thecannonattackwithhand.DMP"
+
 
 .align 4
 BassAttack:
@@ -50,9 +68,7 @@ pointercopy "rockmanreal.gba",0x34F4,0,0x6B
 pointercopy "rockmanreal.gba",0x36A0,0,0x4C
 .dw ClawMOVE2|1
 
-.align 4
 
-.include "Sound/addingswosh.asm"
 
 .orga 0x8124E8
 .dw BassMainClaw|1;.dw BASSCLAWATTACK|1
@@ -82,6 +98,9 @@ pointercopy "rockmanreal.gba",0x36A0,0,0x4C
 .orga 0x2BC4C
 .dw BassAttack
 
+.orga 0x2B458
+.dw BassAttack
+
 ;.orga 0x3400
 ;.dw BASSEFCCLAW|1
 
@@ -93,4 +112,15 @@ pointercopy "rockmanreal.gba",0x36A0,0,0x4C
 
 .orga 0x2B9C
 .dw SHLList
+
+.orga 0xEE36C
+.dw Songs
+.orga 0xEE3A0
+.dw Songs
+.orga 0xEE3EC
+.dw Songs
+.orga 0xEE440
+.dw Songs
+.orga 0xEE474
+.dw Songs
 .close

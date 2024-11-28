@@ -27,7 +27,11 @@ ldrb r1,[r5,0xA]
 add r1,r1,4
 strb r1,[r5,0xA]
 bl SetHand
+ldr r0,=0x1F5
+BXwithR11 0x8000534|1 ;sound
+
 pop r15
+.pool
 WaitToSetHead:
 push r14
 mov r0,0
@@ -52,8 +56,7 @@ push r14
 ;strh r0,[r5,0x20]
 ;bne @@Finish
 BXwithR11 counterTime|1
-mov r0,0x48
-add r0,0xFF
+ldr r0,=0x1F4
 BXwithR11 0x8000534|1 ;sound
 bl SummonHead
 mov r0,28

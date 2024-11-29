@@ -22,6 +22,7 @@ size equ filesize("rockmanreal.gba")
 .include "Sound/addingswosh.asm"
 
 .orga size
+.include "SettingExplode/EFCExplode.asm"
 .include "SettingClaw/Claw.asm"
 .include "SettingLasers/LaserMaster.asm"
 

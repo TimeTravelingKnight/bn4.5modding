@@ -1,5 +1,6 @@
 counterTime equ 0x800C48A 
 flagOn equ 0x080139DA
+BassBarrier equ 0x81DFAEC
 .align 2
 LaserMain:
 push r14
@@ -56,8 +57,8 @@ push r14
 ;strh r0,[r5,0x20]
 ;bne @@Finish
 BXwithR11 counterTime|1
-ldr r0,=0x1F4
-BXwithR11 0x8000534|1 ;sound
+;ldr r0,=0x1F4
+;BXwithR11 0x8000534|1 ;sound
 bl SummonHead
 mov r0,28
 strb r0,[r5,0x10]
@@ -101,6 +102,7 @@ sub r0,1
 strh r0,[r5,0x20]
 bne @@Finish
 str r0,[r5,0x4C]
+BXwithR11 BassBarrier|1
 BXwithR11 0x800D5bC|1
 @@Finish:
 pop r15

@@ -9,7 +9,7 @@
 size equ filesize("rockmanreal.gba")
 .include "macros/helpermacro.asm"
 .include "SettingLasers/LaserDmgHook.asm"
-
+.include "ShieldReset/shield.asm"
 
 .org 0x82B09AC
 .area 0xF30B

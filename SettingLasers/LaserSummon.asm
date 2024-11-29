@@ -24,7 +24,7 @@ mov r2,0x10
 eor r1,r2
 strb r1,[r0]
 ;ldr r4,=0x12800
-ldr r4,=0x014000
+ldr r4,=0x4000
 BXwithR11 EFC0A|1
 ;mov r2,30
 ;strb r2,[r0,5]

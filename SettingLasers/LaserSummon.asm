@@ -18,6 +18,7 @@ ldr r6,=0x9400D2
 mov r3,0
 mov r2,0
 mov r4,0
+;bl SHLlaserset
 BXwithR11 SummonLaser|1
 ldrb r1,[r0]
 mov r2,0x10
@@ -26,8 +27,8 @@ strb r1,[r0]
 ;ldr r4,=0x12800
 ldr r4,=0x4000
 BXwithR11 EFC0A|1
-;mov r2,30
-;strb r2,[r0,5]
+mov r2,30
+strb r2,[r0,5]
 ;bl SetExplosion
 bl SetDestoryPanels
 mov r1,2

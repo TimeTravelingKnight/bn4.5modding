@@ -13,13 +13,37 @@ bx r0
 pop r15
 .pool
 LaserStates:
+.dw SetHandMotion|1
 .dw InitAttack|1
 .dw WaitToSetHead|1
 .dw InitHead|1
 .dw InitLaser|1
 .dw LastPhase|1
+
+SetHandMotion:
+push r14
+mov r0,30
+strb r0,[r5,0x10]
+
+mov r0,5
+strh r0,[r5,0x20]
+
+ldrb r1,[r5,0xA]
+add r1,r1,4
+strb r1,[r5,0xA]
+
+
+
+pop r15
+
+
 InitAttack:
 push r14
+ldrh r0,[r5,0x20]
+sub r0,1
+strh r0,[r5,0x20]
+bne @@Finish
+;BXwithR11 counter
 mov r0,20
 strh r0,[r5,0x20]
 mov r0,27
@@ -30,7 +54,7 @@ strb r1,[r5,0xA]
 bl SetHand
 ldr r0,=0x1F5
 BXwithR11 0x8000534|1 ;sound
-
+@@Finish:
 pop r15
 .pool
 WaitToSetHead:

@@ -25,8 +25,8 @@ size equ filesize("rockmanreal.gba")
 .include "SettingExplode/EFCExplode.asm"
 .include "SettingClaw/Claw.asm"
 .include "SettingLasers/LaserMaster.asm"
-
-
+.include "LaserSHL/LaserMaster.asm"
+.include "SetFlash/FlashMaster.asm"
 
 .align 4
 Songs:
@@ -60,14 +60,19 @@ BassCape:
 .incbin "bins/bassnewcape.DMP"
 
 .align 4
+LaserWhite:
+.incbin "bins/White_Laser.dmp"
+
+.align 4
 EMList:
 pointercopy "rockmanreal.gba",0x32A8,0,0x6B
 .dw BASSEFCCLAW|1
-
+.dw FlashMove|1
 SHLList:
 pointercopy "rockmanreal.gba",0x34F4,0,0x6B
 pointercopy "rockmanreal.gba",0x36A0,0,0x4C
 .dw ClawMOVE2|1
+.dw LaserMainMove|1
 
 
 
@@ -86,6 +91,7 @@ pointercopy "rockmanreal.gba",0x36A0,0,0x4C
 
 .orga 0x2B790
 .dw ClawSprite
+.dw LaserWhite
 
 ;.orga 0x2BC20
 ;.dw ClawSprite
